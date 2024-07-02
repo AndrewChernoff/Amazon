@@ -11,6 +11,7 @@ import { BackgroundImg, HomeContainer, ProductRows } from "@/styles/homestyles";
 import Product from "@/components/product/product";
 import { useProducts } from "@/common/hooks/useProducts";
 import { ProductType } from "@/common/types/product";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,13 +24,13 @@ export default function Home() {
     });
   }, []);
 
-  const { loading, error, data } = useProducts()
+  const { loading, error, data } = useProducts();
 
   /* console.log(loading, error, data); */
 
-  if (loading) return <p>Loading...</p>
-  
-  if (error) return <p>Error</p>
+  if (loading) return <p>Loading...</p>;
+
+  if (error) return <p>Error</p>;
 
   return (
     <HomeContainer>
@@ -39,14 +40,16 @@ export default function Home() {
       />
       <ProductRows>
         {data?.products.map((el: ProductType) => {
-          return <Product
-          key={el.id}
-          id={el.id}
-          image={el.images[0].url}
-          title={el.name}
-          price={el.price}
-          rating={4}
-        />
+          return (
+              <Product
+                key={el.id}
+                id={el.id}
+                image={el.images[0].url}
+                title={el.name}
+                price={el.price}
+                rating={4}
+              />
+          );
         })}
       </ProductRows>
     </HomeContainer>

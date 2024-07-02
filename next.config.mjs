@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["www.hatchwise.com"],
+    domains: ["www.hatchwise.com", "media.graphassets.com"],
   },
   compiler: {
     styledComponents: true,

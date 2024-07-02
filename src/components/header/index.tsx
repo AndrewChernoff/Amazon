@@ -5,11 +5,13 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks/hooks";
 import { selectUser, signOut } from "@/store/reducers/userReducer";
 import { auth } from "../../../lib/firebase";
 import { useRouter } from "next/router";
+import { selectCartItemsCount } from "@/store/reducers/cartReducer";
 
 export const Header = () => {
   const user = useAppSelector(selectUser)
   const dispatch = useAppDispatch()
   const router = useRouter()
+  const basketCount = useAppSelector(selectCartItemsCount);
 
   const handleSignIn = () => {
     if(user) {
@@ -49,7 +51,7 @@ export const Header = () => {
       <CheckoutLink href="/checkout">
         <Basket>
           <ShoppingCartOutlinedIcon />
-          <BasketCounter>{'1'}</BasketCounter>
+          <BasketCounter>{basketCount}</BasketCounter>
         </Basket>
       </CheckoutLink>
     </Nav>
