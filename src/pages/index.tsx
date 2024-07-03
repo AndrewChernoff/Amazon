@@ -1,7 +1,3 @@
-import Head from "next/head";
-import Image from "next/image";
-import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
 import { useAppDispatch } from "@/store/hooks/hooks";
 import { useEffect } from "react";
 import { auth } from "../../lib/firebase";
@@ -11,6 +7,7 @@ import { BackgroundImg, HomeContainer, ProductRows } from "@/styles/homestyles";
 import Product from "@/components/product/product";
 import { useProducts } from "@/common/hooks/useProducts";
 import { ProductType } from "@/common/types/product";
+import { Loading } from "@/components/loader";
 
 
 export default function Home() {
@@ -24,9 +21,9 @@ export default function Home() {
 
   const { loading, error, data } = useProducts();
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loading />
 
-  if (error) return <p>Error</p>;
+  if (error) return <p>Error</p>
 
   return (
     <HomeContainer>

@@ -7,6 +7,7 @@ import { store } from "@/store";
 import { Provider } from "react-redux";
 import { ApolloProvider } from "@apollo/client";
 import client from "../../lib/graphql/client";
+import 'rsuite/dist/rsuite.min.css';
 
 
 const theme: DefaultTheme = {
@@ -21,7 +22,6 @@ const theme: DefaultTheme = {
 
 export default function App({ Component, pageProps }: AppProps) {
 
- 
   return (
     <>
       <Provider store={store}>
