@@ -1,3 +1,4 @@
+import WithAuth from "@/common/hoc/withAuth";
 import { CartType } from "@/common/types/cart";
 import Advert from "@/components/advert/advert";
 import CheckoutProduct from "@/components/checkoutProduct/checkoutProduct";
@@ -9,7 +10,7 @@ import { Main } from "@/styles/sharedstyles";
 import Container from "@mui/material/Container";
 
 
-export default function Checkout() {
+function Checkout() {
   const basket = useAppSelector(selectCartItems);
   const basketCount = useAppSelector(selectCartItemsCount);
 
@@ -48,3 +49,5 @@ export default function Checkout() {
     </Container>
   );
 }
+
+export default WithAuth(Checkout)

@@ -46,4 +46,4 @@ const CheckoutProduct = ({ id, title, image, price, quantity }: IPropsType) => {
   );
 };
 
-export default CheckoutProduct;
+export default CheckoutProduct

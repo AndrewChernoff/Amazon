@@ -15,7 +15,6 @@ const WithAuth = (WrappedComponent: ComponentType) => {
       auth.onAuthStateChanged((user: User | null) => {
         if(user) {
           dispatch(signIn(user));
-          router.replace('/');
         } else {
           router.replace('/login');
         }
