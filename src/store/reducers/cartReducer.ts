@@ -19,7 +19,13 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action: PayloadAction<CartType>) => {
-      state.items = [...state.items, action.payload];
+      const isInCart = state.items.find((el) => el.id === action.payload.id);
+      if (!!isInCart) {
+        isInCart.quantity += 1;
+      } else {
+        const newProduct = { ...action.payload, quantity: 1 };
+        state.items.push(newProduct);
+      }
     },
     removeFromCart: (state, action: PayloadAction<{ id: string }>) => {
       //...use id that we have passed and remove the item from basket with that id
@@ -31,8 +37,6 @@ export const cartSlice = createSlice({
         (item) => item.id === action.payload.id
       );
 
-      console.log(index, "index");
-
       if (index !== -1) {
         //splice item out of basket
         newBasket.splice(index, 1);
@@ -41,12 +45,28 @@ export const cartSlice = createSlice({
         console.warn(`Can't remove product as its not in basket`);
       }
     },
+
+    increase: (state, action: PayloadAction<{ id: string }>) => {
+      const item = state.items.find((el) => el.id === action.payload.id);
+      if(item) {
+        item.quantity += 1;
+      }
+    },
+
+    decrease: (state, action: PayloadAction<{ id: string }>) => {
+      const item = state.items.find((el) => el.id === action.payload.id);
+      if(item) {
+        item.quantity -= 1;
+      }
+    },
   },
 });
 
-export const { addToCart, removeFromCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, increase, decrease } =
+  cartSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
+
 export const selectCartItems = (state: RootState) => state.cart.items;
 
 export const selectCartItemsCount = (state: RootState) =>
@@ -54,7 +74,7 @@ export const selectCartItemsCount = (state: RootState) =>
 
 export const selectCartTotal = (state: RootState) => {
   const totalAmount = state.cart.items.reduce(
-    (total, item) => (total += item.price),
+    (total, item) => (total += item.price * item.quantity),
     0
   );
   return totalAmount;

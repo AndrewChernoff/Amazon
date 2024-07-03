@@ -36,6 +36,7 @@ export default function Checkout() {
                     title={item.title}
                     image={item.image}
                     price={item.price}
+                    quantity={item.quantity}
                   />
                 ))}
               </div>

@@ -4,4 +4,5 @@ export type CartType = {
     image: string;
     price: number;
     rating: number | string;
+    quantity: number
   }

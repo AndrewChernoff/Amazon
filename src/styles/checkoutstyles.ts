@@ -31,10 +31,10 @@ export const CheckoutBody = styled.div`
     flex-direction: column;
     align-items: center;
     :first-child {
-      flex: 1;
+      //flex: 1;
     }
     :last-child {
-      flex: 1;
+      //flex: 1;
     }
   }
 `;

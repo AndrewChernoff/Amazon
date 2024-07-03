@@ -51,4 +51,41 @@ const AmazonButton = styled.button`
   cursor: pointer;
 `;
 
-export { Container, Main, Title, Description, AmazonButton };
+const InCartButton = styled.button`
+  background: #cdcdc8;
+  border-color: #747473;
+  border-radius: 8px;
+  color: white;
+  box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);
+  font-size: 0.8rem;
+  padding: 10px;
+  cursor: pointer;
+`;
+
+const InCartBlock = styled.div`
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+`;
+const CountButton = styled.button`
+  width: 30%;
+  background: #cdcdc8;
+  border-color: #747473;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);
+  font-size: 0.8rem;
+  padding: 10px;
+  cursor: pointer;
+`;
+
+export {
+  Container,
+  Main,
+  Title,
+  Description,
+  AmazonButton,
+  InCartButton,
+  InCartBlock,
+  CountButton,
+};

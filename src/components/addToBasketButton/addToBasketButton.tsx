@@ -1,7 +1,7 @@
 import React from "react";
-import { AmazonButton } from "../../styles/sharedstyles";
-import { useAppDispatch } from "@/store/hooks/hooks";
-import { addToCart } from "@/store/reducers/cartReducer";
+import { AmazonButton, InCartButton } from "../../styles/sharedstyles";
+import { useAppDispatch, useAppSelector } from "@/store/hooks/hooks";
+import { addToCart, selectCartItems } from "@/store/reducers/cartReducer";
 
 type PropsType = {
   id: string;
@@ -9,16 +9,13 @@ type PropsType = {
   image: string;
   price: number;
   rating: number;
-}
+};
 
-const AddToBasketButton = ({
-  id,
-  title,
-  image,
-  price,
-  rating,
-}: PropsType) => {
+const AddToBasketButton = ({ id, title, image, price, rating }: PropsType) => {
   const dispatch = useAppDispatch();
+
+  const isInCart = useAppSelector(selectCartItems).find((el) => el.id === id);
+
   const addToBasket = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     dispatch(
@@ -28,12 +25,21 @@ const AddToBasketButton = ({
         image,
         price,
         rating,
+        quantity: 0,
       })
     );
   };
 
   return (
-    <AmazonButton onClick={(e) => addToBasket(e)}>Add To Basket</AmazonButton>
+    <>
+      {isInCart ? (
+        <InCartButton disabled={true}>Already in the Basket</InCartButton>
+      ) : (
+        <AmazonButton onClick={(e) => addToBasket(e)}>
+          {"Add To Basket"}
+        </AmazonButton>
+      )}
+    </>
   );
 };
 

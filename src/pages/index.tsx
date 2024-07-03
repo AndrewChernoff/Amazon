@@ -11,9 +11,7 @@ import { BackgroundImg, HomeContainer, ProductRows } from "@/styles/homestyles";
 import Product from "@/components/product/product";
 import { useProducts } from "@/common/hooks/useProducts";
 import { ProductType } from "@/common/types/product";
-import Link from "next/link";
 
-const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const dispatch = useAppDispatch();
@@ -25,8 +23,6 @@ export default function Home() {
   }, []);
 
   const { loading, error, data } = useProducts();
-
-  /* console.log(loading, error, data); */
 
   if (loading) return <p>Loading...</p>;
 
