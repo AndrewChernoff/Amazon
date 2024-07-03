@@ -7,8 +7,14 @@ export interface UserState {
   user: null | FirebaseUser;
 }
 
+/* let userFromLocalStorage = typeof window !== "undefined" ? window.localStorage.getItem('user') : false
+
+const storedUser = userFromLocalStorage
+  ? JSON.parse(userFromLocalStorage)
+  : null;
+   */
 const initialState: UserState = {
-  user: null,
+  user:  null,
 }
 
 export const userSlice = createSlice({

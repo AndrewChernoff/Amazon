@@ -1,10 +1,11 @@
 import { FormEvent, useEffect, useState } from "react";
 import { Container, RegisterButton, SignInButton } from "./styled";
-import { User, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../lib/firebase";
 import { useRouter } from "next/router";
 import { useAppDispatch } from "@/store/hooks/hooks";
 import { signIn } from "@/store/reducers/userReducer";
+import Link from "next/link";
 
 export const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -39,6 +40,12 @@ export const LoginForm = () => {
       });
   };
 
+  const resetPassword = (e: FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    sendPasswordResetEmail(auth, email)
+  }
+
   return (
     <Container>
       <h1>Sign In</h1>
@@ -64,6 +71,12 @@ export const LoginForm = () => {
         <RegisterButton type="button" onClick={(e) => registerUser(e)}>
           Create your Amazon Account
         </RegisterButton>
+        <br></br>
+        <br></br>
+    
+        <Link href={'reset-password'}>
+          Reset password
+        </Link>
       </form>
     </Container>
   );

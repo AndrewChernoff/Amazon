@@ -9,8 +9,9 @@ import { useProducts } from "@/common/hooks/useProducts";
 import { ProductType } from "@/common/types/product";
 import { Loading } from "@/components/loader";
 import bg from '@/common/imgs/background_amazon.jpg';
+import WithAuth from "@/common/hoc/withAuth";
 
-export default function Home() {
+function Home() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -48,3 +49,6 @@ export default function Home() {
     </HomeContainer>
   );
 }
+
+
+export default WithAuth(Home)
