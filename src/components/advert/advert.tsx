@@ -2,11 +2,11 @@
 const Advert = () => {
   return (
     <>
-      <img
+      {/* <img
         style={{ width: "100vw", objectFit: "contain" }}
         src="https://m.media-amazon.com/images/G/02/kindle/merch/2019/campaign/aucc/evergreen/BBU/BBU-ILM-B1-650x45-UK._CB451912896_.jpg"
         alt="Echo Dot"
-      />
+      /> */}
       <br />
       <div
         style={{

@@ -8,7 +8,7 @@ import Product from "@/components/product/product";
 import { useProducts } from "@/common/hooks/useProducts";
 import { ProductType } from "@/common/types/product";
 import { Loading } from "@/components/loader";
-
+import bg from '@/common/imgs/background_amazon.jpg';
 
 export default function Home() {
   const dispatch = useAppDispatch();
@@ -28,8 +28,8 @@ export default function Home() {
   return (
     <HomeContainer>
       <BackgroundImg
-        src="https://m.media-amazon.com/images/I/61xnEcip5RL._SX3000_.jpg"
-        alt="Amazon Background"
+        src={`${bg}`}
+        //alt="Amazon Background"
       />
       <ProductRows>
         {data?.products.map((el: ProductType) => {

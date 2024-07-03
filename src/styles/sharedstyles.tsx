@@ -65,6 +65,7 @@ const InCartButton = styled.button`
 const InCartBlock = styled.div`
   width: 80%;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   margin-bottom: 10px;
 `;

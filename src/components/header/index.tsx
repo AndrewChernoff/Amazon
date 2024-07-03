@@ -6,6 +6,7 @@ import { selectUser, signOut } from "@/store/reducers/userReducer";
 import { auth } from "../../../lib/firebase";
 import { useRouter } from "next/router";
 import { selectCartItemsCount } from "@/store/reducers/cartReducer";
+import logo from '@/common/imgs/amazon-logo.png'
 
 export const Header = () => {
   const user = useAppSelector(selectUser)
@@ -25,9 +26,7 @@ export const Header = () => {
     <Nav>
       <Link href={"/"}>
         <Logo
-          src={
-            "https://www.hatchwise.com/wp-content/uploads/2022/05/amazon-logo-1024x683.png"
-          }
+          src={logo}
           alt="logo"
           width={100}
           height={100}
