@@ -10,11 +10,13 @@ import Link from "next/link";
 export const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsloading] = useState(false);
   const router = useRouter()
   const dispatch = useAppDispatch()
 
   const loginUser = (e: FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    setIsloading(true)
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         dispatch(signIn(userCredential.user))
@@ -24,27 +26,26 @@ export const LoginForm = () => {
         const errorCode = error.code;
         const errorMessage = error.message;
         alert(`${errorMessage} - Code is ${errorCode}`);
+        setIsloading(false)
       });
   };
 
   const registerUser = (e: FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    setIsloading(true)
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        console.log(userCredential.user);
+        alert('Successfully registred!');
+        setEmail('')
+        setPassword('')
+        setIsloading(false)
       })
       .catch((error) => {
-        const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(`${errorMessage} - Code is ${errorCode}`);
+        alert(errorMessage);
+        setIsloading(false)
       });
   };
-
-  const resetPassword = (e: FormEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-
-    sendPasswordResetEmail(auth, email)
-  }
 
   return (
     <Container>
@@ -64,11 +65,11 @@ export const LoginForm = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <SignInButton type="submit" onClick={(e) => loginUser(e)}>
+        <SignInButton disabled={isLoading} type="submit" onClick={(e) => loginUser(e)}>
           Sign In
         </SignInButton>
         <p style={{ textAlign: "center" }}>Or</p>
-        <RegisterButton type="button" onClick={(e) => registerUser(e)}>
+        <RegisterButton disabled={isLoading} type="button" onClick={(e) => registerUser(e)}>
           Create your Amazon Account
         </RegisterButton>
         <br></br>
