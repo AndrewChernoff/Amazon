@@ -3,7 +3,8 @@ import GlobalStyle from "@/styles/globalstyles";
 import { ThemeProvider, DefaultTheme } from "styled-components";
 import type { AppProps } from "next/app";
 import { Header } from "@/components/header";
-import { store } from "@/store";
+import { persistor, store } from "@/store";
+import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from "react-redux";
 import { ApolloProvider } from "@apollo/client";
 import client from "../../lib/graphql/client";
@@ -25,6 +26,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
       <ApolloProvider client={client}>
         <ThemeProvider theme={theme}>
           <GlobalStyle />
@@ -32,6 +34,8 @@ export default function App({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />;
         </ThemeProvider>
         </ApolloProvider>
+        </PersistGate>
+
       </Provider>
     </>
   );
