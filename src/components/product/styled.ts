@@ -3,8 +3,9 @@ import styled from "styled-components";
 const ProductContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: space-between;
   width: 300px;
+  height: 380px;
   background-color: ${({ theme }) => theme.colors.white};
   z-index: 1;
   padding: 20px;

@@ -34,13 +34,16 @@ const CheckoutProduct = ({ id, title, image, price, quantity }: IPropsType) => {
         </TitleContainer>
 
         <InCartBlock>
+          <div>
           <CountButton onClick={decreaseHandler} disabled={quantity === 1}>-</CountButton>
           <p>{quantity}</p>
           <CountButton onClick={increaseHandler}>+</CountButton>
-        </InCartBlock>
-        <AmazonButton onClick={() => removeFromBasket()}>
+          </div>
+          <AmazonButton onClick={() => removeFromBasket()}>
           Remove from basket
         </AmazonButton>
+        </InCartBlock>
+
       </Info>
     </Container>
   );

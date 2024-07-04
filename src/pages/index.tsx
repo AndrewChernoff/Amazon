@@ -28,10 +28,10 @@ function Home() {
 
   return (
     <HomeContainer>
-      <BackgroundImg
+      {/* <BackgroundImg
         src={`${bg}`}
         //alt="Amazon Background"
-      />
+      /> */}
       <ProductRows>
         {data?.products.map((el: ProductType) => {
           return (

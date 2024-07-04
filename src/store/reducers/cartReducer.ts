@@ -59,10 +59,14 @@ export const cartSlice = createSlice({
         item.quantity -= 1;
       }
     },
+
+    removeAll: (state) => {
+      state.items = []
+    },
   },
 });
 
-export const { addToCart, removeFromCart, increase, decrease } =
+export const { addToCart, removeFromCart, increase, decrease, removeAll } =
   cartSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type

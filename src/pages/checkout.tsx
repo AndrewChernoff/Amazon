@@ -3,16 +3,21 @@ import { CartType } from "@/common/types/cart";
 import Advert from "@/components/advert/advert";
 import CheckoutProduct from "@/components/checkoutProduct/checkoutProduct";
 import SubTotal from "@/components/subTotal/subTotal";
-import { useAppSelector } from "@/store/hooks/hooks";
-import { selectCartItems, selectCartItemsCount } from "@/store/reducers/cartReducer";
+import { useAppDispatch, useAppSelector } from "@/store/hooks/hooks";
+import { removeAll, selectCartItems, selectCartItemsCount } from "@/store/reducers/cartReducer";
 import { CheckoutBody, CheckoutContainer, CheckoutTitle } from "@/styles/checkoutstyles";
-import { Main } from "@/styles/sharedstyles";
+import { AmazonButton, Main } from "@/styles/sharedstyles";
 import Container from "@mui/material/Container";
 
 
 function Checkout() {
+  const dispatch = useAppDispatch();
   const basket = useAppSelector(selectCartItems);
   const basketCount = useAppSelector(selectCartItemsCount);
+
+  const removeAllProducts = () => {
+    dispatch(removeAll())
+  }
 
   return (
     <Container>
@@ -30,6 +35,7 @@ function Checkout() {
                   Your Shopping Basket - {basketCount}{" "}
                   {basketCount > 1 ? "items" : "item"} in basket
                 </CheckoutTitle>
+                <AmazonButton onClick={removeAllProducts}>Remove products</AmazonButton>
                 {basket.map((item: CartType, index: number) => (
                   <CheckoutProduct
                     key={index}

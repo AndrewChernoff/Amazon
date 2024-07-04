@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -41,6 +42,11 @@ const SignInButton = styled.button`
   width: 100%;
   height: 30px;
   cursor: pointer;
+
+  &:hover {
+    background: silver;
+    border-color: silver;
+  }
 `;
 
 const RegisterButton = styled.button`
@@ -51,6 +57,17 @@ const RegisterButton = styled.button`
   width: 100%;
   height: 30px;
   cursor: pointer;
+  &:hover {
+    background: lightgray;
+    border-color: lightgray;
+  }
 `;
 
-export { Container, SignInButton, RegisterButton };
+const ResetLink = styled(Link)`
+  display: block;
+  text-align: center;
+`
+
+const LinkToBack = styled(ResetLink)``
+
+export { Container, SignInButton, RegisterButton, ResetLink, LinkToBack};

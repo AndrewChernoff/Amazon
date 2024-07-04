@@ -54,6 +54,7 @@ export const OptionTopLine = styled.span`
 export const OptionBottomLine = styled.span`
   font-size: 13px;
   font-weight: 800;
+  cursor: pointer;
 `;
 
 

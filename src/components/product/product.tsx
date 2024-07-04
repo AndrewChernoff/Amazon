@@ -1,4 +1,3 @@
-import React from "react";
 import { Title } from "../../styles/sharedstyles";
 import { Info, ProductContainer } from "./styled";
 import Price from "../price/price";
@@ -22,7 +21,7 @@ const Product = ({ id, title, image, price, rating }: ProductProps) => {
         <Info>
           <Title>{title}</Title>
           <Price itemPrice={price} />
-          <Rating ratingNumber={rating} />
+         {/*  <Rating ratingNumber={rating} /> */}
         </Info>
       </Link>
 

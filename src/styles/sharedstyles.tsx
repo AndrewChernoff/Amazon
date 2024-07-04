@@ -49,6 +49,11 @@ const AmazonButton = styled.button`
   font-size: 0.8rem;
   padding: 10px;
   cursor: pointer;
+
+  &:hover {
+    background: silver;
+    border-color: silver;
+  }
 `;
 
 const InCartButton = styled.button`
@@ -67,7 +72,19 @@ const InCartBlock = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-direction: column;
+  gap: 8px;
   margin-bottom: 10px;
+  div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    @media (max-width: 501px) {
+    width: 55%;
+  }
+  }
+  
 `;
 const CountButton = styled.button`
   width: 30%;

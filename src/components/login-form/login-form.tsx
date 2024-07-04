@@ -1,11 +1,10 @@
-import { FormEvent, useEffect, useState } from "react";
-import { Container, RegisterButton, SignInButton } from "./styled";
-import { createUserWithEmailAndPassword, sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
+import { FormEvent, useState } from "react";
+import { Container, RegisterButton, ResetLink, SignInButton } from "./styled";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../lib/firebase";
 import { useRouter } from "next/router";
 import { useAppDispatch } from "@/store/hooks/hooks";
 import { signIn } from "@/store/reducers/userReducer";
-import Link from "next/link";
 
 export const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -34,7 +33,7 @@ export const LoginForm = () => {
     e.preventDefault();
     setIsloading(true)
     createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
+      .then(() => {
         alert('Successfully registred!');
         setEmail('')
         setPassword('')
@@ -75,9 +74,9 @@ export const LoginForm = () => {
         <br></br>
         <br></br>
     
-        <Link href={'reset-password'}>
+        <ResetLink href={'reset-password'}>
           Reset password
-        </Link>
+        </ResetLink>
       </form>
     </Container>
   );

@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import { Container, RegisterButton, SignInButton } from "../login-form/styled";
+import { Container, LinkToBack, RegisterButton, SignInButton } from "../login-form/styled";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../../../lib/firebase";
 import Link from "next/link";
@@ -27,11 +27,11 @@ export const ResetPasswordForm = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
         <RegisterButton onClick={resetPassword}>
-          reset password
+          Reset password
         </RegisterButton>
     <br></br>
     <br></br>
-        <Link href={'login'}>Back to login page</Link>
+        <LinkToBack href={'login'}>Back to login page</LinkToBack>
       </form>
     </Container>
   );
