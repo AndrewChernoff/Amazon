@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { Basket, BasketCounter, CheckoutLink, Logo, Nav, Option, OptionBottomLine, OptionTopLine, SearchBox, SearchButton, SearchInput } from "./styled";
+import { Basket, BasketCounter, CheckoutLink, Logo, ManageBlock, Nav, Option, OptionBottomLine, OptionTopLine, SearchBox, SearchButton, SearchInput } from "./styled";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { useAppDispatch, useAppSelector } from "@/store/hooks/hooks";
 import { selectUser, signOut } from "@/store/reducers/userReducer";
 import { auth } from "../../../lib/firebase";
 import { useRouter } from "next/router";
-import { selectCartItemsCount } from "@/store/reducers/cartReducer";
+import { removeAll, selectCartItemsCount } from "@/store/reducers/cartReducer";
 import logo from '@/common/imgs/amazon-logo.png'
 
 export const Header = () => {
@@ -17,6 +17,7 @@ export const Header = () => {
   const handleSignIn = () => {
     if(user) {
       auth.signOut();
+      dispatch(removeAll())
       dispatch(signOut())
     } else {
       router.push('/login')
@@ -32,11 +33,11 @@ export const Header = () => {
           height={100}
         />
       </Link>
-      <SearchBox>
+      {/* <SearchBox>
         <SearchInput type="text"/>
         <SearchButton />
-      </SearchBox>
-
+      </SearchBox> */}
+    <ManageBlock>
       <Option>
         <OptionTopLine>Hello {user?.email}</OptionTopLine>
           <OptionBottomLine onClick={() => handleSignIn()}>{user !== null ? "Sign out" : "Sign in"}</OptionBottomLine>
@@ -53,6 +54,7 @@ export const Header = () => {
           <BasketCounter>{basketCount}</BasketCounter>
         </Basket>
       </CheckoutLink>
+      </ManageBlock>
     </Nav>
   );
 };

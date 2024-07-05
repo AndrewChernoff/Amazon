@@ -7,6 +7,7 @@ import Link from "next/link";
 export const Nav = styled.nav`
   background-color: ${({ theme }) => theme.colors.navBg};
   display: flex;
+  justify-content: space-between;
   align-items: center;
   position: sticky;
   top: 0;
@@ -80,3 +81,9 @@ export const CheckoutLink = styled(Link)`
   text-decoration: none;
   color: ${({ theme }) => theme.colors.white};
 `;
+
+export const ManageBlock = styled.div`
+  display: flex;
+  justify-content: space-between;
+  max-width: 55%;
+`
