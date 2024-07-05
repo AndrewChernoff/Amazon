@@ -1,5 +1,5 @@
 import { useAppDispatch } from "@/store/hooks/hooks";
-import { useEffect } from "react";
+import { SyntheticEvent, useEffect, useState } from "react";
 import { auth } from "../../lib/firebase";
 import { User } from "firebase/auth";
 import { signIn } from "@/store/reducers/userReducer";
@@ -10,6 +10,9 @@ import { ProductType } from "@/common/types/product";
 import { Loading } from "@/components/loader";
 import bg from '@/common/imgs/background_amazon.jpg';
 import WithAuth from "@/common/hoc/withAuth";
+import Alert from "@mui/material/Alert";
+import Snackbar from "@mui/material/Snackbar";
+import { ShowError } from "@/components/showError/showError";
 
 function Home() {
   const dispatch = useAppDispatch();
@@ -24,14 +27,13 @@ function Home() {
 
   if (loading) return <Loading />
 
-  if (error) return <p>Error</p>
-
   return (
     <HomeContainer>
       {/* <BackgroundImg
         src={`${bg}`}
         //alt="Amazon Background"
       /> */}
+      <ShowError errorStatus={!!error}/>
       <ProductRows>
         {data?.products.map((el: ProductType) => {
           return (
